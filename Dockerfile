@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install --no-cache-dir poetry
+RUN pip install --no-cache-dir --no-root poetry
 
 # Copy only requirements to cache them in docker layer
 COPY pyproject.toml poetry.lock* /app/
