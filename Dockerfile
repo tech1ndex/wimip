@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -24,7 +24,7 @@ RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
 # Copy the current directory contents into the container at /app
-COPY ./src/dl-nanny /app/
+COPY ./src/wimip /app/
 
 # Specify the command to run on container start
-CMD ["python", "deluge.py"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
