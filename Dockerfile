@@ -27,4 +27,4 @@ RUN poetry config virtualenvs.create false \
 COPY ./src/wimip /app/
 
 # Specify the command to run on container start
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
