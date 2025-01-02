@@ -7,4 +7,4 @@ A simple Python project to retrieve the public IP address of the user.
 ```
 curl -s ip.tech1ndex.ca
 ```
-"Your IP: 1.1.1.1"
+1.1.1.1
