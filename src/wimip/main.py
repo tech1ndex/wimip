@@ -1,8 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Depends, Header
 
 app = FastAPI()
 
 @app.get("/")
-def read_root(request: Request):
-    client_host = request.client.host
-    return {f"Your IP: {client_host}"}
+def xff_ip(real_ip: str = Header(None, alias='x-forwarded-for')):
+    return real_ip
