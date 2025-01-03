@@ -6,7 +6,7 @@ app = FastAPI()
 routes_to_reroute = ["/"]
 
 class Details(BaseModel):
-    ip: int | None = None
+    ip: str | None = None
     user_agent: str | None = None
     method: str | None = None
     referrer: str | None = None
@@ -28,11 +28,11 @@ async def main():
 
 
 @app.get("/ip")
-def client_ip(xff_ip: int = Header(None, alias='x-forwarded-for')):
+def client_ip(xff_ip: str = Header(None, alias='x-forwarded-for')):
     return xff_ip
 
 @app.get("/details", response_model=Details)
-def client_details(xff_ip: int = Header(None, alias='x-forwarded-for'),
+def client_details(xff_ip: str = Header(None, alias='x-forwarded-for'),
                    request_ref: str = Header(None, alias='referrer'),
                    user_agent: Annotated[str | None, Header(default=None)] = None):
     return Details(ip=xff_ip,
