@@ -34,7 +34,7 @@ def client_ip(xff_ip: int = Header(None, alias='x-forwarded-for')):
 @app.get("/details", response_model=Details)
 def client_details(xff_ip: int = Header(None, alias='x-forwarded-for'),
                    request_ref: str = Header(None, alias='referrer'),
-                   user_agent: Annotated[str | None, Header()] = None):
+                   user_agent: Annotated[str | None, Header(default=None)] = None):
     return Details(ip=xff_ip,
                    user_agent=user_agent,
                    method="GET",
